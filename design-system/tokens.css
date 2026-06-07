@@ -1,0 +1,86 @@
+/* ============================================================
+   HistoricLibya — Design Tokens
+   Editorial / museum-luxury. Warm, archaeological, confident.
+   ============================================================ */
+
+:root {
+  /* ---- Colour ------------------------------------------------ */
+  --bone:        #F5EFE4;  /* primary surface            */
+  --alt:         #EFE7D6;  /* alternate section bg       */
+  --surface:     #E7DAC4;  /* card / raised surface      */
+  --hairline:    #D8CCB4;  /* hairline border            */
+
+  --ink:         #211B13;  /* heading ink                */
+  --body:        #463B2C;  /* body ink                   */
+  --muted:       #6F624E;  /* muted / caption            */
+
+  --terracotta:      #9C3B26;  /* PRIMARY — history world */
+  --terracotta-deep: #79291A;  /* hover                   */
+  --teal:            #14545E;  /* SECONDARY — travel world*/
+  --teal-deep:       #0C3A41;  /* travel CTA bands        */
+  --brass:           #B5894A;  /* fine lines, gold detail */
+  --night:           #16110A;  /* history bands / footer  */
+
+  --on-dark:      #F3EBDD;     /* text on dark            */
+  --on-dark-soft: #C9BCA4;     /* muted text on dark      */
+
+  /* Accent that the Tweaks panel can rebalance (history vs travel) */
+  --accent:      var(--terracotta);
+  --accent-deep: var(--terracotta-deep);
+
+  /* ---- Type -------------------------------------------------- */
+  --font-display: "Marcellus", "Cormorant Garamond", Georgia, serif;
+  --font-body:    "Hanken Grotesk", system-ui, sans-serif;
+  --font-arabic:  "IBM Plex Sans Arabic", "Hanken Grotesk", sans-serif;
+
+  --fs-display: clamp(2.85rem, 1.4rem + 6vw, 6.5rem);
+  --fs-h1:      clamp(2.3rem, 1.4rem + 3.6vw, 4rem);
+  --fs-h2:      clamp(1.8rem, 1.2rem + 2.4vw, 3rem);
+  --fs-h3:      clamp(1.35rem, 1.05rem + 1.2vw, 1.9rem);
+  --fs-lead:    clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+  --fs-body:    1.0625rem;        /* 17px */
+  --fs-eyebrow: 0.78rem;
+
+  --lh-tight:   1.04;
+  --lh-snug:    1.18;
+  --lh-body:    1.62;
+
+  /* ---- Space & layout --------------------------------------- */
+  --section-y: clamp(4rem, 2rem + 8vw, 9rem);
+  --gutter:    clamp(1.25rem, 0.5rem + 3vw, 3rem);
+
+  --container:      1280px;
+  --container-wide: 1480px;
+  --prose:          760px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+
+  /* ---- Radius ------------------------------------------------ */
+  --r-sm:   4px;
+  --r-base: 10px;
+  --r-lg:   20px;
+  --r-pill: 999px;
+
+  /* ---- Elevation -------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(33, 27, 19, 0.06), 0 2px 8px rgba(33, 27, 19, 0.05);
+  --shadow-md: 0 8px 30px rgba(33, 27, 19, 0.10), 0 2px 8px rgba(33, 27, 19, 0.06);
+  --shadow-lg: 0 30px 80px rgba(22, 17, 10, 0.28);
+
+  /* ---- Motion ----------------------------------------------- */
+  --ease:    cubic-bezier(.22, .61, .36, 1);
+  --t-fast:  180ms;
+  --t-base:  340ms;
+  --t-slow:  640ms;
+
+  /* motion scale (Tweaks can dial 0 = off → 1.4 = lively) */
+  --motion: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion: 0; }
+}
