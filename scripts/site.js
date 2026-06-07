@@ -33,14 +33,43 @@
   $$(".nav__panel-links a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
 
-  /* ---- EN / AR toggle (visual stub) ---------------------- */
-  $$(".lang-toggle").forEach((tg) => {
-    tg.addEventListener("click", (e) => {
-      const btn = e.target.closest("button");
-      if (!btn) return;
-      $$("button", tg).forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+  /* ---- Bilingual EN / AR with full RTL ------------------- */
+  let timelineUpdate = null;            // set once the timeline is wired below
+  const TITLE_EN = "HistoricLibya — Stand where history happened";
+  const TITLE_AR = "HistoricLibya — قف حيث صُنع التاريخ";
+
+  const applyLang = (lang) => {
+    const ar = lang === "ar";
+    const h = document.documentElement;
+    h.lang = ar ? "ar" : "en";
+    h.dir = ar ? "rtl" : "ltr";
+    document.title = ar ? TITLE_AR : TITLE_EN;
+
+    // swap inner content (capturing the English original on first run)
+    $$("[data-ar]").forEach((el) => {
+      if (el._en == null) el._en = el.innerHTML;
+      el.innerHTML = ar ? el.getAttribute("data-ar") : el._en;
     });
+    // swap translatable attributes
+    $$("[data-ar-aria-label]").forEach((el) => {
+      if (el._enAria == null) el._enAria = el.getAttribute("aria-label") || "";
+      el.setAttribute("aria-label", ar ? el.getAttribute("data-ar-aria-label") : el._enAria);
+    });
+    $$("[data-ar-placeholder]").forEach((el) => {
+      if (el._enPh == null) el._enPh = el.getAttribute("placeholder") || "";
+      el.setAttribute("placeholder", ar ? el.getAttribute("data-ar-placeholder") : el._enPh);
+    });
+    // reflect state on both toggle groups + persist
+    $$(".lang-toggle button").forEach((b) => {
+      b.setAttribute("aria-pressed", String((b.getAttribute("lang") === "ar") === ar));
+    });
+    try { localStorage.setItem("hl-lang", lang); } catch (e) {}
+    if (timelineUpdate) timelineUpdate();   // rail/arrows depend on direction
+  };
+  $$(".lang-toggle button").forEach((btn) => {
+    btn.addEventListener("click", () => applyLang(btn.getAttribute("lang") === "ar" ? "ar" : "en"));
   });
+  const isAr = () => document.documentElement.lang === "ar";
 
   /* ---- Scroll reveals ------------------------------------ */
   const reveals = $$("[data-reveal]");
@@ -85,22 +114,30 @@
       const gap = parseFloat(getComputedStyle(track).columnGap || "24") || 24;
       return card ? card.getBoundingClientRect().width + gap : 360;
     };
+    // In RTL, scrollLeft runs 0 → −max, so normalise with abs() and flip the
+    // direction the prev/next buttons scroll. The rail fills from the right.
     const update = () => {
+      const rtl = getComputedStyle(track).direction === "rtl";
       const max = track.scrollWidth - track.clientWidth;
-      const p = max > 0 ? track.scrollLeft / max : 0;
-      if (prev) prev.disabled = track.scrollLeft <= 4;
-      if (next) next.disabled = track.scrollLeft >= max - 4;
+      const pos = Math.abs(track.scrollLeft);
+      const p = max > 0 ? pos / max : 0;
+      if (prev) prev.disabled = pos <= 4;
+      if (next) next.disabled = pos >= max - 4;
       if (railFill) {
         const visible = Math.min(1, track.clientWidth / track.scrollWidth);
+        const offset = (p * (100 - visible * 100)) + "%";
         railFill.style.width = (visible * 100) + "%";
-        railFill.style.left = (p * (100 - visible * 100)) + "%";
+        if (rtl) { railFill.style.left = "auto"; railFill.style.right = offset; }
+        else     { railFill.style.right = "auto"; railFill.style.left = offset; }
       }
     };
-    if (prev) prev.addEventListener("click", () => track.scrollBy({ left: -step() * 1.4, behavior: rm ? "auto" : "smooth" }));
-    if (next) next.addEventListener("click", () => track.scrollBy({ left:  step() * 1.4, behavior: rm ? "auto" : "smooth" }));
+    const dir = () => (getComputedStyle(track).direction === "rtl" ? -1 : 1);
+    if (prev) prev.addEventListener("click", () => track.scrollBy({ left: -dir() * step() * 1.4, behavior: rm ? "auto" : "smooth" }));
+    if (next) next.addEventListener("click", () => track.scrollBy({ left:  dir() * step() * 1.4, behavior: rm ? "auto" : "smooth" }));
     track.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
     update();
+    timelineUpdate = update;
 
     // pointer drag-to-scroll
     let down = false, startX = 0, startL = 0, moved = false;
@@ -132,9 +169,16 @@
       const val = (input && input.value || "").trim();
       const ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val);
       if (!msg) return;
-      if (!ok) { msg.textContent = "Please enter a valid email address."; msg.style.color = "#E0A899"; return; }
+      const ar = isAr();
+      if (!ok) {
+        msg.textContent = ar ? "يرجى إدخال بريدٍ إلكتروني صحيح." : "Please enter a valid email address.";
+        msg.style.color = "#E0A899";
+        return;
+      }
       msg.style.color = "var(--brass)";
-      msg.textContent = "Thank you — you're on the list. We'll be in touch from Tripoli.";
+      msg.textContent = ar
+        ? "شكراً لك — أصبحت على القائمة. سنتواصل معك من طرابلس."
+        : "Thank you — you're on the list. We'll be in touch from Tripoli.";
       form.reset();
     });
   });
@@ -151,4 +195,9 @@
       window.scrollTo({ top: y, behavior: rm ? "auto" : "smooth" });
     });
   });
+
+  /* ---- Apply the saved language (after everything is wired) -- */
+  let savedLang = "en";
+  try { savedLang = localStorage.getItem("hl-lang") === "ar" ? "ar" : "en"; } catch (e) {}
+  applyLang(savedLang);
 })();

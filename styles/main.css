@@ -645,6 +645,65 @@ html[data-hero="c"] .nav:not(.is-scrolled) { color: var(--ink); }
 .skip { position: absolute; left: -999px; top: 0; z-index: 200; background: var(--ink); color: var(--bone); padding: 0.8rem 1.2rem; border-radius: var(--r-base); }
 .skip:focus { left: 1rem; top: 1rem; }
 
+/* ============================================================
+   ARABIC / RTL
+   When <html lang="ar" dir="rtl"> the whole site flips to Tajawal,
+   reads right-to-left, and drops Latin-only letter-spacing.
+   ============================================================ */
+html[lang="ar"] {
+  --font-display: "Tajawal", "Segoe UI", Tahoma, sans-serif;
+  --font-body:    "Tajawal", "Segoe UI", Tahoma, sans-serif;
+}
+html[lang="ar"] body { line-height: 1.75; }
+html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4 { line-height: 1.32; letter-spacing: normal; }
+html[lang="ar"] .hero h1 { line-height: 1.22; }
+html[lang="ar"] h2 { letter-spacing: normal; }
+
+/* Arabic script is cursive — decorative letter-spacing breaks the joins */
+html[lang="ar"] .eyebrow,
+html[lang="ar"] .brand-word small,
+html[lang="ar"] .brand-word b,
+html[lang="ar"] .nav__link,
+html[lang="ar"] .lang-toggle,
+html[lang="ar"] .site-card__kicker,
+html[lang="ar"] .era-card__years,
+html[lang="ar"] .era-card__index,
+html[lang="ar"] .article-card__tag,
+html[lang="ar"] .article-card__meta,
+html[lang="ar"] .footer__col h4,
+html[lang="ar"] .footer__bottom,
+html[lang="ar"] .hero__caption,
+html[lang="ar"] .hero__cue,
+html[lang="ar"] .figure__era,
+html[lang="ar"] .figure__dates,
+html[lang="ar"] .nav__panel-links a .num,
+html[lang="ar"] .intro__feature figcaption,
+html[lang="ar"] .hero[data-hero="b"] .hero__cover-rule { letter-spacing: normal; }
+
+/* ---- RTL: flip every physical-direction rule --------------- */
+[dir="rtl"] .nav__brand { margin-right: 0; margin-inline-end: auto; }
+[dir="rtl"] .nav__link::after { transform-origin: right; }
+[dir="rtl"] .sec-head--split .sec-head__aside { text-align: left; }
+[dir="rtl"] .pillar__body::before { left: auto; right: clamp(1.5rem, 2vw, 2.1rem); }
+[dir="rtl"] .hero[data-hero="a"] .hero__caption { right: auto; left: var(--gutter); }
+[dir="rtl"] .hero[data-hero="b"] .hero__caption { left: auto; right: var(--gutter); }
+[dir="rtl"] .era-card__index { left: auto; right: 1.5rem; }
+[dir="rtl"] .figure__era { text-align: left; }
+[dir="rtl"] .field { padding: 0.4rem 1.3rem 0.4rem 0.5rem; }
+[dir="rtl"] .skip:focus { left: auto; right: 1rem; }
+
+/* arrows point the other way in RTL */
+[dir="rtl"] .arrow { display: inline-block; transform: scaleX(-1); }
+[dir="rtl"] .btn:hover .arrow,
+[dir="rtl"] .link-arrow:hover .arrow { transform: scaleX(-1) translateX(calc(4px * var(--motion))); }
+
+/* timeline reads right-to-left: fill the rail from the right, flip the chevrons */
+[dir="rtl"] .timeline__rail span { left: auto; right: 0; }
+[dir="rtl"] .timeline__btn svg { transform: scaleX(-1); }
+
+/* keep the in-panel language switch visible on mobile */
+@media (max-width: 960px) { .nav__panel .lang-toggle { display: inline-flex; } }
+
 /* ---- Tweak-driven overrides -------------------------------- */
 body.flat-tints .section--alt { background: var(--bone); }
 

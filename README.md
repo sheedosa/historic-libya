@@ -8,6 +8,7 @@ Built as a fully static, self-contained site (HTML / CSS / vanilla JS) — no bu
 
 - **Cinematic hero** over the Roman theatre at Sabratha, with the Marcellus inscriptional serif as the signature typeface.
 - **Full section system** — value pillars, a 10-era horizontal-scroll timeline (drag + arrows + progress rail), an asymmetric sites grid, key figures, a teal *Visit Libya* travel band with sample itineraries, journal, and a working newsletter form.
+- **Fully bilingual (English / Arabic)** — the EN / ع switch in the nav flips the entire site to professional Arabic with full right-to-left layout, the **Tajawal** typeface, mirrored arrows and timeline, and a remembered language preference.
 - **Fully interactive** — frosted-on-scroll nav with scroll-spy, full-screen mobile menu, scroll reveals, email validation and smooth anchors — all collapsing under `prefers-reduced-motion`.
 - **Real photography** of Sabratha, Leptis Magna, Apollonia, Cyrene and the Ptolemais coast, bundled under `assets/`.
 

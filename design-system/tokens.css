@@ -31,7 +31,7 @@
   /* ---- Type -------------------------------------------------- */
   --font-display: "Marcellus", "Cormorant Garamond", Georgia, serif;
   --font-body:    "Hanken Grotesk", system-ui, sans-serif;
-  --font-arabic:  "IBM Plex Sans Arabic", "Hanken Grotesk", sans-serif;
+  --font-arabic:  "Tajawal", "Segoe UI", Tahoma, sans-serif;
 
   --fs-display: clamp(2.85rem, 1.4rem + 6vw, 6.5rem);
   --fs-h1:      clamp(2.3rem, 1.4rem + 3.6vw, 4rem);

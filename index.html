@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-hero="a" data-hero-theme="dark">
+<html lang="en" dir="ltr" data-hero="a" data-hero-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,42 +17,51 @@
     return oc.apply(window.console, arguments);
   };
 })();
+/* Restore the saved language before first paint so RTL layout doesn't flash. */
+(function () {
+  try {
+    if (localStorage.getItem("hl-lang") === "ar") {
+      var h = document.documentElement;
+      h.lang = "ar"; h.dir = "rtl";
+    }
+  } catch (e) {}
+})();
 </script>
 <title>HistoricLibya — Stand where history happened</title>
 <meta name="description" content="Two thousand years of Greek, Roman and Saharan heritage — and the expert-led journeys that take you there. A history library and specialist travel company for Libya.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:wght@500;600;700&family=Spectral:wght@400;500;600&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:wght@500;600;700&family=Spectral:wght@400;500;600&family=Hanken+Grotesk:wght@400..700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="design-system/tokens.css">
 <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main" data-ar="تخطَّ إلى المحتوى">Skip to content</a>
 
 <!-- ============================ NAV ============================ -->
 <header class="nav" id="nav">
   <div class="nav__bar">
     <a class="nav__brand" href="#top" aria-label="HistoricLibya — home">
       <span class="brand-mark"><span>H</span></span>
-      <span class="brand-word"><b>HistoricLibya</b><small>Heritage &amp; Travel</small></span>
+      <span class="brand-word"><b>HistoricLibya</b><small data-ar="التراث والسفر">Heritage &amp; Travel</small></span>
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a class="nav__link" href="#eras">Eras</a>
-      <a class="nav__link" href="#sites">Sites &amp; Cities</a>
-      <a class="nav__link" href="#figures">Key Figures</a>
-      <a class="nav__link" href="#visit">Visit Libya</a>
-      <a class="nav__link" href="#journal">Journal</a>
+      <a class="nav__link" href="#eras" data-ar="العصور">Eras</a>
+      <a class="nav__link" href="#sites" data-ar="المواقع والمدن">Sites &amp; Cities</a>
+      <a class="nav__link" href="#figures" data-ar="أبرز الشخصيات">Key Figures</a>
+      <a class="nav__link" href="#visit" data-ar="زيارة ليبيا">Visit Libya</a>
+      <a class="nav__link" href="#journal" data-ar="المدوّنة">Journal</a>
     </nav>
     <div class="nav__tools">
-      <button class="nav__icon" aria-label="Search the library">
+      <button class="nav__icon" aria-label="Search the library" data-ar-aria-label="ابحث في المكتبة">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2" stroke-linecap="round"/></svg>
       </button>
       <div class="lang-toggle" role="group" aria-label="Language">
         <button aria-pressed="true">EN</button>
         <button aria-pressed="false" lang="ar">ع</button>
       </div>
-      <a class="btn btn--teal nav__cta" href="#visit">Plan a trip <span class="arrow">→</span></a>
-      <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="navpanel">
+      <a class="btn btn--teal nav__cta" href="#visit" data-ar='خطّط رحلتك <span class="arrow">→</span>'>Plan a trip <span class="arrow">→</span></a>
+      <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="navpanel" data-ar-aria-label="افتح القائمة">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -61,18 +70,22 @@
   <!-- mobile overlay -->
   <div class="nav__panel" id="navpanel">
     <div class="nav__panel-head">
-      <span class="brand-word" style="color:var(--on-dark)"><b>HistoricLibya</b><small style="color:var(--brass)">Heritage &amp; Travel</small></span>
-      <button class="nav__panel-close" aria-label="Close menu">×</button>
+      <span class="brand-word" style="color:var(--on-dark)"><b>HistoricLibya</b><small style="color:var(--brass)" data-ar="التراث والسفر">Heritage &amp; Travel</small></span>
+      <button class="nav__panel-close" aria-label="Close menu" data-ar-aria-label="أغلق القائمة">×</button>
     </div>
     <nav class="nav__panel-links" aria-label="Mobile">
-      <a href="#eras"><span class="num">01</span> Eras</a>
-      <a href="#sites"><span class="num">02</span> Sites &amp; Cities</a>
-      <a href="#figures"><span class="num">03</span> Key Figures</a>
-      <a href="#visit"><span class="num">04</span> Visit Libya</a>
-      <a href="#journal"><span class="num">05</span> Journal</a>
+      <a href="#eras" data-ar='<span class="num">01</span> العصور'><span class="num">01</span> Eras</a>
+      <a href="#sites" data-ar='<span class="num">02</span> المواقع والمدن'><span class="num">02</span> Sites &amp; Cities</a>
+      <a href="#figures" data-ar='<span class="num">03</span> أبرز الشخصيات'><span class="num">03</span> Key Figures</a>
+      <a href="#visit" data-ar='<span class="num">04</span> زيارة ليبيا'><span class="num">04</span> Visit Libya</a>
+      <a href="#journal" data-ar='<span class="num">05</span> المدوّنة'><span class="num">05</span> Journal</a>
     </nav>
     <div class="nav__panel-foot">
-      <a class="btn btn--teal" href="#visit">Plan a trip <span class="arrow">→</span></a>
+      <a class="btn btn--teal" href="#visit" data-ar='خطّط رحلتك <span class="arrow">→</span>'>Plan a trip <span class="arrow">→</span></a>
+      <div class="lang-toggle nav__panel-lang" role="group" aria-label="Language">
+        <button aria-pressed="true">EN</button>
+        <button aria-pressed="false" lang="ar">ع</button>
+      </div>
       <span style="color:var(--on-dark-soft);font-size:0.85rem">historiclibya@gmail.com</span>
     </div>
   </div>
@@ -86,32 +99,32 @@
   <div class="hero__scrim"></div>
   <div class="hero__inner">
     <div class="hero__col stagger">
-      <p class="eyebrow">Heritage travel · Libya</p>
-      <h1>Stand in the theatre at <span class="ital">Sabratha</span>.</h1>
-      <p class="hero__lede">Two thousand years of Greek, Roman and Saharan history — and the expert-led journeys that take you there.</p>
+      <p class="eyebrow" data-ar="سفر تراثي · ليبيا">Heritage travel · Libya</p>
+      <h1 data-ar='قف في مسرح <span class="ital">صبراتة</span>.'>Stand in the theatre at <span class="ital">Sabratha</span>.</h1>
+      <p class="hero__lede" data-ar="ألفا عام من التاريخ الإغريقي والروماني والصحراوي — ورحلاتٌ يقودها خبراء تأخذك إلى هناك.">Two thousand years of Greek, Roman and Saharan history — and the expert-led journeys that take you there.</p>
       <div class="hero__actions">
-        <a class="btn" href="#visit">Plan your journey <span class="arrow">→</span></a>
-        <a class="btn btn--outline-dark" href="#eras">Explore the eras</a>
+        <a class="btn" href="#visit" data-ar='خطّط رحلتك <span class="arrow">→</span>'>Plan your journey <span class="arrow">→</span></a>
+        <a class="btn btn--outline-dark" href="#eras" data-ar="استكشف العصور">Explore the eras</a>
       </div>
     </div>
   </div>
-  <p class="hero__caption">Roman theatre, Sabratha — UNESCO World Heritage</p>
-  <a class="hero__cue" href="#intro" aria-label="Scroll to begin"><span>Scroll</span><span class="line"></span></a>
+  <p class="hero__caption" data-ar="المسرح الروماني، صبراتة — موقع تراث عالمي لليونسكو">Roman theatre, Sabratha — UNESCO World Heritage</p>
+  <a class="hero__cue" href="#intro" aria-label="Scroll to begin" data-ar-aria-label="مرّر للبدء"><span data-ar="مرّر">Scroll</span><span class="line"></span></a>
 </header>
 
 <!-- ============================ HERO B — journal cover ============================ -->
 <header class="hero hero--b" data-hero="b" id="top-b" aria-hidden="false">
   <div class="hero__grid">
     <div class="hero__col stagger">
-      <div class="hero__cover-rule"><span>Vol. I</span><span>Est. Tripoli</span></div>
-      <p class="eyebrow">Heritage travel · Libya</p>
-      <h1>A field journal to a country <span class="ital">few have seen</span>.</h1>
-      <p class="hero__lede">Greek cities, Roman capitals and Saharan kingdoms — researched in depth, and travelled with experts who know the ground.</p>
+      <div class="hero__cover-rule"><span data-ar="المجلد الأول">Vol. I</span><span data-ar="تأسّست في طرابلس">Est. Tripoli</span></div>
+      <p class="eyebrow" data-ar="سفر تراثي · ليبيا">Heritage travel · Libya</p>
+      <h1 data-ar='يوميات ميدانية إلى بلدٍ <span class="ital">قلّ من رآه</span>.'>A field journal to a country <span class="ital">few have seen</span>.</h1>
+      <p class="hero__lede" data-ar="مدنٌ إغريقية وعواصم رومانية وممالك صحراوية — مدروسةٌ بعمق، وتُزار برفقة خبراء يعرفون الأرض.">Greek cities, Roman capitals and Saharan kingdoms — researched in depth, and travelled with experts who know the ground.</p>
       <div class="hero__actions" style="margin-top:2rem">
-        <a class="btn" href="#visit">Plan your journey <span class="arrow">→</span></a>
-        <a class="btn btn--ghost" href="#eras">Explore the eras</a>
+        <a class="btn" href="#visit" data-ar='خطّط رحلتك <span class="arrow">→</span>'>Plan your journey <span class="arrow">→</span></a>
+        <a class="btn btn--ghost" href="#eras" data-ar="استكشف العصور">Explore the eras</a>
       </div>
-      <p class="hero__caption">Issue 01 — The Pentapolis &amp; the coast</p>
+      <p class="hero__caption" data-ar="العدد 01 — المدن الخمس والساحل">Issue 01 — The Pentapolis &amp; the coast</p>
     </div>
     <div class="hero__media-wrap">
       <div class="hero__media"><img src="assets/images/hero/sabratha-theatre.jpg" alt="The theatre at Sabratha on the Libyan coast"></div>
@@ -127,16 +140,16 @@
       <div class="hero__media"><img src="assets/images/hero/sabratha-theatre.jpg" alt="The theatre at Sabratha on the Libyan coast"></div>
       <div class="hero__scrim"></div>
       <div class="hero__col stagger">
-        <p class="eyebrow">Heritage travel · Libya</p>
-        <h1>Stand where <span class="ital">history</span> happened.</h1>
-        <p class="hero__lede">A library of Libya's eras and the expert-led journeys that take you to them.</p>
+        <p class="eyebrow" data-ar="سفر تراثي · ليبيا">Heritage travel · Libya</p>
+        <h1 data-ar='قف حيث <span class="ital">صُنع التاريخ</span>.'>Stand where <span class="ital">history</span> happened.</h1>
+        <p class="hero__lede" data-ar="مكتبةٌ لعصور ليبيا، ورحلاتٌ يقودها خبراء تأخذك إليها.">A library of Libya's eras and the expert-led journeys that take you to them.</p>
         <div class="hero__actions" style="margin-top:1.6rem">
-          <a class="btn btn--on-dark" href="#visit">Plan your journey <span class="arrow">→</span></a>
-          <a class="btn btn--outline-dark" href="#eras">Explore the eras</a>
+          <a class="btn btn--on-dark" href="#visit" data-ar='خطّط رحلتك <span class="arrow">→</span>'>Plan your journey <span class="arrow">→</span></a>
+          <a class="btn btn--outline-dark" href="#eras" data-ar="استكشف العصور">Explore the eras</a>
         </div>
       </div>
     </div>
-    <p class="hero__caption">Plate I — Roman theatre, Sabratha, 2nd century CE</p>
+    <p class="hero__caption" data-ar="اللوحة الأولى — المسرح الروماني، صبراتة، القرن الثاني الميلادي">Plate I — Roman theatre, Sabratha, 2nd century CE</p>
   </div>
 </header>
 
@@ -145,18 +158,18 @@
   <div class="container container--wide">
     <div class="intro__head">
       <div class="intro__text" data-reveal>
-        <p class="eyebrow">Why HistoricLibya</p>
-        <h2>A library you can <span class="ital">walk into</span>.</h2>
-        <p class="intro__lead">We research Libya's past in depth — then take a small number of travellers to stand inside it.</p>
+        <p class="eyebrow" data-ar="لماذا HistoricLibya">Why HistoricLibya</p>
+        <h2 data-ar='مكتبةٌ <span class="ital">يمكنك أن تدخلها</span>.'>A library you can <span class="ital">walk into</span>.</h2>
+        <p class="intro__lead" data-ar="ندرس ماضي ليبيا بعمق — ثم نأخذ عدداً قليلاً من المسافرين ليقفوا في قلبه.">We research Libya's past in depth — then take a small number of travellers to stand inside it.</p>
         <dl class="intro__stats">
-          <div><dt>3</dt><dd>UNESCO World Heritage sites</dd></div>
-          <div><dt>10</dt><dd>eras, mapped end to end</dd></div>
-          <div><dt>1</dt><dd>expert team, on the ground</dd></div>
+          <div><dt>3</dt><dd data-ar="مواقع تراث عالمي مُدرجة في اليونسكو">UNESCO World Heritage sites</dd></div>
+          <div><dt>10</dt><dd data-ar="حقبٌ موثّقة من البداية إلى النهاية">eras, mapped end to end</dd></div>
+          <div><dt>1</dt><dd data-ar="فريقٌ واحد من الخبراء، على الأرض">expert team, on the ground</dd></div>
         </dl>
       </div>
       <figure class="intro__feature" data-reveal data-reveal-delay="1">
         <img src="assets/images/sites/sabratha-ruins.jpg" alt="A Roman colonnade beside the sea at Sabratha">
-        <figcaption>Sabratha — the seafront colonnade</figcaption>
+        <figcaption data-ar="صبراتة — رواق الواجهة البحرية">Sabratha — the seafront colonnade</figcaption>
       </figure>
     </div>
 
@@ -165,27 +178,27 @@
         <div class="pillar__media"><img src="assets/images/journal/culture.jpg" alt="The carved facade of an ancient monument"></div>
         <div class="pillar__body">
           <span class="pillar__n">01</span>
-          <h3>A living library</h3>
-          <p>Eras, figures, cities and culture — written by the people who study them.</p>
-          <a class="link-arrow link-arrow--accent" href="#eras">Browse the eras <span class="arrow">→</span></a>
+          <h3 data-ar="مكتبةٌ حيّة">A living library</h3>
+          <p data-ar="العصور والشخصيات والمدن والثقافة — بأقلام من يدرسونها.">Eras, figures, cities and culture — written by the people who study them.</p>
+          <a class="link-arrow link-arrow--accent" href="#eras" data-ar='تصفّح العصور <span class="arrow">→</span>'>Browse the eras <span class="arrow">→</span></a>
         </div>
       </article>
       <article class="pillar" data-reveal data-reveal-delay="2">
         <div class="pillar__media"><img src="assets/images/sites/ptolemais-harbour.jpg" alt="The turquoise harbour at Ptolemais from above"></div>
         <div class="pillar__body">
           <span class="pillar__n">02</span>
-          <h3>Expert-led travel</h3>
-          <p>Journeys guided by archaeologists and Libyan hosts who turn ruins into stories.</p>
-          <a class="link-arrow" href="#visit">See how we travel <span class="arrow">→</span></a>
+          <h3 data-ar="سفرٌ بقيادة الخبراء">Expert-led travel</h3>
+          <p data-ar="رحلاتٌ يقودها علماء آثار ومضيفون ليبيون يحوّلون الأطلال إلى حكايات.">Journeys guided by archaeologists and Libyan hosts who turn ruins into stories.</p>
+          <a class="link-arrow" href="#visit" data-ar='كيف نسافر <span class="arrow">→</span>'>See how we travel <span class="arrow">→</span></a>
         </div>
       </article>
       <article class="pillar" data-reveal data-reveal-delay="3">
         <div class="pillar__media"><img src="assets/images/sites/desert.jpg" alt="The Saharan landscape of southern Libya"></div>
         <div class="pillar__body">
           <span class="pillar__n">03</span>
-          <h3>Logistics, handled</h3>
-          <p>Visas, permits and security — arranged end to end, so you simply turn up and look.</p>
-          <a class="link-arrow" href="#visit">Visa &amp; practicalities <span class="arrow">→</span></a>
+          <h3 data-ar="نتكفّل بالترتيبات">Logistics, handled</h3>
+          <p data-ar="التأشيرات والتصاريح والأمن — مُرتّبةٌ من الألف إلى الياء، فما عليك إلا الحضور والمشاهدة.">Visas, permits and security — arranged end to end, so you simply turn up and look.</p>
+          <a class="link-arrow" href="#visit" data-ar='التأشيرة والترتيبات <span class="arrow">→</span>'>Visa &amp; practicalities <span class="arrow">→</span></a>
         </div>
       </article>
     </div>
@@ -197,13 +210,13 @@
   <div class="container container--wide">
     <div class="timeline__head" data-reveal>
       <div class="sec-head">
-        <p class="eyebrow">A timeline of Libya</p>
-        <h2>Ten thousand years, <span class="ital">one coastline</span>.</h2>
-        <p>From Saharan rock art to the Garamantes, the Greek Pentapolis, Roman Africa and the present day. Drag, or use the arrows.</p>
+        <p class="eyebrow" data-ar="الخط الزمني لليبيا">A timeline of Libya</p>
+        <h2 data-ar='عشرة آلاف عام، <span class="ital">وساحلٌ واحد</span>.'>Ten thousand years, <span class="ital">one coastline</span>.</h2>
+        <p data-ar="من النقوش الصخرية الصحراوية إلى الجرامنت، والمدن الإغريقية الخمس، وأفريقيا الرومانية، حتى يومنا هذا. اسحب، أو استخدم الأسهم.">From Saharan rock art to the Garamantes, the Greek Pentapolis, Roman Africa and the present day. Drag, or use the arrows.</p>
       </div>
       <div class="timeline__controls">
-        <button class="timeline__btn" data-tl="prev" aria-label="Previous eras"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="timeline__btn" data-tl="next" aria-label="More eras"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="timeline__btn" data-tl="prev" aria-label="Previous eras" data-ar-aria-label="العصور السابقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="timeline__btn" data-tl="next" aria-label="More eras" data-ar-aria-label="مزيد من العصور"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div>
   </div>
@@ -212,52 +225,52 @@
       <a class="era-card" role="listitem" href="#eras">
         <img src="assets/images/sites/desert.jpg" alt="">
         <span class="era-card__index">01</span>
-        <div class="era-card__body"><span class="era-card__years">c. 8000 BCE</span><h3>Prehistoric Sahara</h3><p class="era-card__desc">Green-Sahara hunters and herders leave rock art across the Acacus mountains.</p></div>
+        <div class="era-card__body"><span class="era-card__years" data-ar="نحو 8000 ق.م">c. 8000 BCE</span><h3 data-ar="صحراء ما قبل التاريخ">Prehistoric Sahara</h3><p class="era-card__desc" data-ar="صيّادون ورُعاة في الصحراء الخضراء يتركون نقوشاً صخرية عبر جبال أكاكوس.">Green-Sahara hunters and herders leave rock art across the Acacus mountains.</p></div>
       </a>
       <a class="era-card" role="listitem" href="#eras">
         <img src="assets/images/sites/medieval.jpg" alt="">
         <span class="era-card__index">02</span>
-        <div class="era-card__body"><span class="era-card__years">1000 BCE – 700 CE</span><h3>The Garamantes</h3><p class="era-card__desc">A desert civilisation farms the Fezzan with underground irrigation tunnels.</p></div>
+        <div class="era-card__body"><span class="era-card__years" data-ar="1000 ق.م – 700 م">1000 BCE – 700 CE</span><h3 data-ar="الجرامنت">The Garamantes</h3><p class="era-card__desc" data-ar="حضارةٌ صحراوية تزرع فزّان عبر أنفاق ريٍّ جوفية.">A desert civilisation farms the Fezzan with underground irrigation tunnels.</p></div>
       </a>
       <a class="era-card" role="listitem" href="#eras">
         <img src="assets/images/sites/sabratha-ruins.jpg" alt="">
         <span class="era-card__index">03</span>
-        <div class="era-card__body"><span class="era-card__years">7th c. BCE</span><h3>Phoenician Coast</h3><p class="era-card__desc">Tyre's traders found Sabratha, Oea and Leptis — the three cities of Tripolitania.</p></div>
+        <div class="era-card__body"><span class="era-card__years" data-ar="القرن السابع ق.م">7th c. BCE</span><h3 data-ar="الساحل الفينيقي">Phoenician Coast</h3><p class="era-card__desc" data-ar="تجّار صور يؤسّسون صبراتة وأويا ولبدة — مدن طرابلس الثلاث.">Tyre's traders found Sabratha, Oea and Leptis — the three cities of Tripolitania.</p></div>
       </a>
       <a class="era-card" role="listitem" href="#eras">
         <img src="assets/images/sites/apollonia.jpg" alt="">
         <span class="era-card__index">04</span>
-        <div class="era-card__body"><span class="era-card__years">631 BCE</span><h3>Greek Cyrenaica</h3><p class="era-card__desc">Settlers from Thera build Cyrene and its Pentapolis above the eastern sea.</p></div>
+        <div class="era-card__body"><span class="era-card__years" data-ar="631 ق.م">631 BCE</span><h3 data-ar="برقة الإغريقية">Greek Cyrenaica</h3><p class="era-card__desc" data-ar="مستوطنون من ثيرا يبنون قورينا ومدنها الخمس فوق البحر الشرقي.">Settlers from Thera build Cyrene and its Pentapolis above the eastern sea.</p></div>
       </a>
       <a class="era-card" role="listitem" href="#eras">
         <img src="assets/images/gallery/g3.jpg" alt="">
         <span class="era-card__index">05</span>
-        <div class="era-card__body"><span class="era-card__years">96 BCE – 439 CE</span><h3>Roman Africa</h3><p class="era-card__desc">Leptis Magna becomes one of the empire's grandest cities under a local emperor.</p></div>
+        <div class="era-card__body"><span class="era-card__years" data-ar="96 ق.م – 439 م">96 BCE – 439 CE</span><h3 data-ar="أفريقيا الرومانية">Roman Africa</h3><p class="era-card__desc" data-ar="لبدة الكبرى تصبح من أعظم مدن الإمبراطورية في عهد إمبراطورٍ من أبنائها.">Leptis Magna becomes one of the empire's grandest cities under a local emperor.</p></div>
       </a>
       <a class="era-card" role="listitem" href="#eras">
         <img src="assets/images/journal/culture.jpg" alt="">
         <span class="era-card__index">06</span>
-        <div class="era-card__body"><span class="era-card__years">643 CE</span><h3>Islamic Libya</h3><p class="era-card__desc">Arab conquest brings Islam, trans-Saharan trade and a new architecture of light.</p></div>
+        <div class="era-card__body"><span class="era-card__years" data-ar="643 م">643 CE</span><h3 data-ar="ليبيا الإسلامية">Islamic Libya</h3><p class="era-card__desc" data-ar="الفتح العربي يجلب الإسلام وتجارةً عبر الصحراء وعمارةً جديدة من نور.">Arab conquest brings Islam, trans-Saharan trade and a new architecture of light.</p></div>
       </a>
       <a class="era-card" role="listitem" href="#eras">
         <img src="assets/images/gallery/g7.jpg" alt="">
         <span class="era-card__index">07</span>
-        <div class="era-card__body"><span class="era-card__years">1551</span><h3>Ottoman Rule</h3><p class="era-card__desc">Tripoli joins the empire; the Karamanli dynasty later rules it near-independently.</p></div>
+        <div class="era-card__body"><span class="era-card__years" data-ar="1551">1551</span><h3 data-ar="الحكم العثماني">Ottoman Rule</h3><p class="era-card__desc" data-ar="طرابلس تنضمّ إلى الإمبراطورية، ثم تحكمها أسرة القرمانلي شبه مستقلّة.">Tripoli joins the empire; the Karamanli dynasty later rules it near-independently.</p></div>
       </a>
       <a class="era-card" role="listitem" href="#eras">
         <img src="assets/images/gallery/g4.jpg" alt="">
         <span class="era-card__index">08</span>
-        <div class="era-card__body"><span class="era-card__years">1911</span><h3>Italian Period</h3><p class="era-card__desc">Colonial occupation and the resistance led by Omar al-Mukhtar.</p></div>
+        <div class="era-card__body"><span class="era-card__years" data-ar="1911">1911</span><h3 data-ar="الحقبة الإيطالية">Italian Period</h3><p class="era-card__desc" data-ar="الاحتلال الاستعماري والمقاومة بقيادة عمر المختار.">Colonial occupation and the resistance led by Omar al-Mukhtar.</p></div>
       </a>
       <a class="era-card" role="listitem" href="#eras">
         <img src="assets/images/gallery/g6.jpg" alt="">
         <span class="era-card__index">09</span>
-        <div class="era-card__body"><span class="era-card__years">1951</span><h3>Independence</h3><p class="era-card__desc">The Kingdom of Libya is founded under Idris I; oil is discovered in 1959.</p></div>
+        <div class="era-card__body"><span class="era-card__years" data-ar="1951">1951</span><h3 data-ar="الاستقلال">Independence</h3><p class="era-card__desc" data-ar="تأسيس المملكة الليبية في عهد إدريس الأول، واكتشاف النفط عام 1959.">The Kingdom of Libya is founded under Idris I; oil is discovered in 1959.</p></div>
       </a>
       <a class="era-card" role="listitem" href="#eras">
         <img src="assets/images/sites/ptolemais-harbour.jpg" alt="">
         <span class="era-card__index">10</span>
-        <div class="era-card__body"><span class="era-card__years">1969 – today</span><h3>Modern Libya</h3><p class="era-card__desc">Revolution, oil and the slow, careful reopening of an extraordinary country.</p></div>
+        <div class="era-card__body"><span class="era-card__years" data-ar="1969 – اليوم">1969 – today</span><h3 data-ar="ليبيا الحديثة">Modern Libya</h3><p class="era-card__desc" data-ar="ثورةٌ ونفطٌ وإعادة انفتاحٍ بطيءٍ وحذرٍ لبلدٍ استثنائي.">Revolution, oil and the slow, careful reopening of an extraordinary country.</p></div>
       </a>
     </div>
     <div class="container container--wide"><div class="timeline__rail"><span></span></div></div>
@@ -269,57 +282,57 @@
   <div class="container container--wide">
     <div class="sec-head sec-head--split" data-reveal>
       <div>
-        <p class="eyebrow">Sites &amp; cities</p>
-        <h2>Five places worth <span class="ital">the journey</span>.</h2>
+        <p class="eyebrow" data-ar="المواقع والمدن">Sites &amp; cities</p>
+        <h2 data-ar='خمسة أماكن <span class="ital">تستحقّ الرحلة</span>.'>Five places worth <span class="ital">the journey</span>.</h2>
       </div>
       <div class="sec-head__aside">
-        <p style="margin:0">Three UNESCO World Heritage sites, a Greek port and a desert town — each one a chapter you can walk through.</p>
+        <p style="margin:0" data-ar="ثلاثة مواقع تراث عالمي مُدرجة في اليونسكو، ومرفأٌ إغريقي، ومدينةٌ صحراوية — كلٌّ منها فصلٌ يمكنك أن تمشي خلاله.">Three UNESCO World Heritage sites, a Greek port and a desert town — each one a chapter you can walk through.</p>
       </div>
     </div>
     <div class="sites-grid" style="margin-top:3rem">
       <a class="site-card site-card--lg" href="#sites" data-reveal>
         <img src="assets/images/gallery/g2.jpg" alt="The carved Arch of Septimius Severus at Leptis Magna">
         <div class="site-card__body">
-          <span class="site-card__kicker">UNESCO · Khoms</span>
-          <h3>Leptis Magna</h3>
-          <p>The best-preserved Roman city in the Mediterranean — forum, basilica and the great arch of its home-grown emperor.</p>
-          <span class="link-arrow">Explore the city <span class="arrow">→</span></span>
+          <span class="site-card__kicker" data-ar="يونسكو · الخمس">UNESCO · Khoms</span>
+          <h3 data-ar="لبدة الكبرى">Leptis Magna</h3>
+          <p data-ar="أفضل المدن الرومانية حفظاً في المتوسط — ساحةٌ وبازيليكا والقوس العظيم لإمبراطورها ابن المدينة.">The best-preserved Roman city in the Mediterranean — forum, basilica and the great arch of its home-grown emperor.</p>
+          <span class="link-arrow" data-ar='استكشف المدينة <span class="arrow">→</span>'>Explore the city <span class="arrow">→</span></span>
         </div>
       </a>
       <a class="site-card site-card--sm" href="#sites" data-reveal data-reveal-delay="1">
         <img src="assets/images/hero/sabratha-theatre.jpg" alt="The theatre at Sabratha">
         <div class="site-card__body">
-          <span class="site-card__kicker">UNESCO · Zawiya coast</span>
-          <h3>Sabratha</h3>
-          <p>A three-storey theatre facing the sea, on a Phoenician trading city older than Rome.</p>
-          <span class="link-arrow">Explore the city <span class="arrow">→</span></span>
+          <span class="site-card__kicker" data-ar="يونسكو · ساحل الزاوية">UNESCO · Zawiya coast</span>
+          <h3 data-ar="صبراتة">Sabratha</h3>
+          <p data-ar="مسرحٌ من ثلاث طبقات يواجه البحر، في مدينةٍ فينيقية تجارية أقدم من روما.">A three-storey theatre facing the sea, on a Phoenician trading city older than Rome.</p>
+          <span class="link-arrow" data-ar='استكشف المدينة <span class="arrow">→</span>'>Explore the city <span class="arrow">→</span></span>
         </div>
       </a>
       <a class="site-card site-card--third" href="#sites" data-reveal>
         <img src="assets/images/journal/explore.jpg" alt="A Greek temple among the ruins of Cyrene">
         <div class="site-card__body">
-          <span class="site-card__kicker">UNESCO · Shahhat</span>
-          <h3>Cyrene</h3>
-          <p>The greatest Greek city in Africa, high above the eastern sea.</p>
-          <span class="link-arrow">Explore <span class="arrow">→</span></span>
+          <span class="site-card__kicker" data-ar="يونسكو · شحات">UNESCO · Shahhat</span>
+          <h3 data-ar="قورينا">Cyrene</h3>
+          <p data-ar="أعظم مدينةٍ إغريقية في أفريقيا، شامخةً فوق البحر الشرقي.">The greatest Greek city in Africa, high above the eastern sea.</p>
+          <span class="link-arrow" data-ar='استكشف <span class="arrow">→</span>'>Explore <span class="arrow">→</span></span>
         </div>
       </a>
       <a class="site-card site-card--third" href="#sites" data-reveal data-reveal-delay="1">
         <img src="assets/images/sites/apollonia.jpg" alt="The coastal ruins of Apollonia">
         <div class="site-card__body">
-          <span class="site-card__kicker">Port of Cyrene</span>
-          <h3>Apollonia</h3>
-          <p>Cyrene's harbour, its quaysides now half-drowned by the Mediterranean.</p>
-          <span class="link-arrow">Explore <span class="arrow">→</span></span>
+          <span class="site-card__kicker" data-ar="مرفأ قورينا">Port of Cyrene</span>
+          <h3 data-ar="أبولونيا">Apollonia</h3>
+          <p data-ar="مرفأ قورينا، أرصفته اليوم نصف غارقةٍ في المتوسط.">Cyrene's harbour, its quaysides now half-drowned by the Mediterranean.</p>
+          <span class="link-arrow" data-ar='استكشف <span class="arrow">→</span>'>Explore <span class="arrow">→</span></span>
         </div>
       </a>
       <a class="site-card site-card--third" href="#sites" data-reveal data-reveal-delay="2">
         <img src="assets/images/sites/desert.jpg" alt="Saharan landscape near Ghadames">
         <div class="site-card__body">
-          <span class="site-card__kicker">UNESCO · The desert pearl</span>
-          <h3>Ghadames</h3>
-          <p>A covered oasis town of whitewashed alleys on the edge of the Sahara.</p>
-          <span class="link-arrow">Explore <span class="arrow">→</span></span>
+          <span class="site-card__kicker" data-ar="يونسكو · لؤلؤة الصحراء">UNESCO · The desert pearl</span>
+          <h3 data-ar="غدامس">Ghadames</h3>
+          <p data-ar="مدينة واحةٍ مسقوفة بأزقّةٍ مبيّضة على حافة الصحراء.">A covered oasis town of whitewashed alleys on the edge of the Sahara.</p>
+          <span class="link-arrow" data-ar='استكشف <span class="arrow">→</span>'>Explore <span class="arrow">→</span></span>
         </div>
       </a>
     </div>
@@ -330,49 +343,49 @@
 <section class="section section--alt" id="figures">
   <div class="container container--wide">
     <div class="sec-head" data-reveal>
-      <p class="eyebrow">Key figures</p>
-      <h2>The people who <span class="ital">shaped it</span>.</h2>
-      <p>Emperors, generals, kings and resistance leaders — Libya's story told through the lives that turned it.</p>
+      <p class="eyebrow" data-ar="شخصيات بارزة">Key figures</p>
+      <h2 data-ar='الناس الذين <span class="ital">صنعوها</span>.'>The people who <span class="ital">shaped it</span>.</h2>
+      <p data-ar="أباطرةٌ وقادةٌ وملوكٌ وزعماء مقاومة — قصة ليبيا تُروى عبر الأرواح التي غيّرتها.">Emperors, generals, kings and resistance leaders — Libya's story told through the lives that turned it.</p>
     </div>
     <div class="figures__grid" style="margin-top:3rem">
       <a class="figure" href="#figures" data-reveal>
         <img src="assets/images/gallery/g2.jpg" alt="">
-        <div class="figure__top"><span class="figure__monogram">S</span><span class="figure__era">Roman</span></div>
-        <div><h3>Septimius Severus</h3><p class="figure__role">Roman Emperor, born at Leptis Magna</p><p class="figure__dates">145 – 211 CE</p></div>
+        <div class="figure__top"><span class="figure__monogram">S</span><span class="figure__era" data-ar="روماني">Roman</span></div>
+        <div><h3 data-ar="سبتيموس سيفيروس">Septimius Severus</h3><p class="figure__role" data-ar="إمبراطورٌ روماني، وُلد في لبدة الكبرى">Roman Emperor, born at Leptis Magna</p><p class="figure__dates" data-ar="145 – 211 م">145 – 211 CE</p></div>
       </a>
       <a class="figure" href="#figures" data-reveal data-reveal-delay="1">
         <img src="assets/images/sites/sabratha-ruins.jpg" alt="">
-        <div class="figure__top"><span class="figure__monogram">H</span><span class="figure__era">Phoenician</span></div>
-        <div><h3>Hannibal</h3><p class="figure__role">Carthaginian general of the Punic Wars</p><p class="figure__dates">247 – 183 BCE</p></div>
+        <div class="figure__top"><span class="figure__monogram">H</span><span class="figure__era" data-ar="فينيقي">Phoenician</span></div>
+        <div><h3 data-ar="هانيبعل">Hannibal</h3><p class="figure__role" data-ar="قائدٌ قرطاجي في الحروب البونيقية">Carthaginian general of the Punic Wars</p><p class="figure__dates" data-ar="247 – 183 ق.م">247 – 183 BCE</p></div>
       </a>
       <a class="figure" href="#figures" data-reveal data-reveal-delay="2">
         <img src="assets/images/sites/medieval.jpg" alt="">
-        <div class="figure__top"><span class="figure__monogram">S</span><span class="figure__era">Ancient</span></div>
-        <div><h3>Shoshenq I</h3><p class="figure__role">Libyan-origin Pharaoh of Egypt</p><p class="figure__dates">r. c. 943 BCE</p></div>
+        <div class="figure__top"><span class="figure__monogram">S</span><span class="figure__era" data-ar="قديم">Ancient</span></div>
+        <div><h3 data-ar="شِيشَنق الأول">Shoshenq I</h3><p class="figure__role" data-ar="فرعون مصر من أصلٍ ليبي">Libyan-origin Pharaoh of Egypt</p><p class="figure__dates" data-ar="حكم نحو 943 ق.م">r. c. 943 BCE</p></div>
       </a>
       <a class="figure" href="#figures" data-reveal data-reveal-delay="3">
         <img src="assets/images/journal/culture.jpg" alt="">
-        <div class="figure__top"><span class="figure__monogram">Y</span><span class="figure__era">Ottoman</span></div>
-        <div><h3>Yusuf Karamanli</h3><p class="figure__role">Pasha of Tripoli</p><p class="figure__dates">1766 – 1838</p></div>
+        <div class="figure__top"><span class="figure__monogram">Y</span><span class="figure__era" data-ar="عثماني">Ottoman</span></div>
+        <div><h3 data-ar="يوسف القرمانلي">Yusuf Karamanli</h3><p class="figure__role" data-ar="باشا طرابلس">Pasha of Tripoli</p><p class="figure__dates" data-ar="1766 – 1838">1766 – 1838</p></div>
       </a>
       <a class="figure" href="#figures" data-reveal>
         <img src="assets/images/sites/desert.jpg" alt="">
-        <div class="figure__top"><span class="figure__monogram">O</span><span class="figure__era">Resistance</span></div>
-        <div><h3>Omar al-Mukhtar</h3><p class="figure__role">Leader of the Libyan resistance</p><p class="figure__dates">1858 – 1931</p></div>
+        <div class="figure__top"><span class="figure__monogram">O</span><span class="figure__era" data-ar="مقاومة">Resistance</span></div>
+        <div><h3 data-ar="عمر المختار">Omar al-Mukhtar</h3><p class="figure__role" data-ar="قائد المقاومة الليبية">Leader of the Libyan resistance</p><p class="figure__dates" data-ar="1858 – 1931">1858 – 1931</p></div>
       </a>
       <a class="figure" href="#figures" data-reveal data-reveal-delay="1">
         <img src="assets/images/gallery/g7.jpg" alt="">
-        <div class="figure__top"><span class="figure__monogram">M</span><span class="figure__era">Religious</span></div>
-        <div><h3>Muhammad as-Senussi</h3><p class="figure__role">Founder of the Senussi order</p><p class="figure__dates">1787 – 1859</p></div>
+        <div class="figure__top"><span class="figure__monogram">M</span><span class="figure__era" data-ar="ديني">Religious</span></div>
+        <div><h3 data-ar="محمد بن علي السنوسي">Muhammad as-Senussi</h3><p class="figure__role" data-ar="مؤسّس الحركة السنوسية">Founder of the Senussi order</p><p class="figure__dates" data-ar="1787 – 1859">1787 – 1859</p></div>
       </a>
       <a class="figure" href="#figures" data-reveal data-reveal-delay="2">
         <img src="assets/images/gallery/g5.jpg" alt="">
-        <div class="figure__top"><span class="figure__monogram">I</span><span class="figure__era">Independence</span></div>
-        <div><h3>King Idris I</h3><p class="figure__role">First King of Libya</p><p class="figure__dates">1889 – 1983</p></div>
+        <div class="figure__top"><span class="figure__monogram">I</span><span class="figure__era" data-ar="الاستقلال">Independence</span></div>
+        <div><h3 data-ar="الملك إدريس الأول">King Idris I</h3><p class="figure__role" data-ar="أول ملوك ليبيا">First King of Libya</p><p class="figure__dates" data-ar="1889 – 1983">1889 – 1983</p></div>
       </a>
       <a class="figure" href="#figures" data-reveal data-reveal-delay="3" style="background:var(--terracotta);">
-        <div class="figure__top"><span class="figure__monogram" style="color:var(--bone)">+</span><span class="figure__era" style="color:rgba(243,235,221,0.85)">Library</span></div>
-        <div><h3 style="color:var(--bone)">All key figures</h3><p class="figure__role" style="color:rgba(243,235,221,0.85)">Browse the full biographical index</p><p class="figure__dates" style="color:var(--bone);border-color:rgba(243,235,221,0.4)">View all →</p></div>
+        <div class="figure__top"><span class="figure__monogram" style="color:var(--bone)">+</span><span class="figure__era" style="color:rgba(243,235,221,0.85)" data-ar="المكتبة">Library</span></div>
+        <div><h3 style="color:var(--bone)" data-ar="كل الشخصيات">All key figures</h3><p class="figure__role" style="color:rgba(243,235,221,0.85)" data-ar="تصفّح الفهرس الكامل للسير">Browse the full biographical index</p><p class="figure__dates" style="color:var(--bone);border-color:rgba(243,235,221,0.4)" data-ar="عرض الكل ←">View all →</p></div>
       </a>
     </div>
   </div>
@@ -384,18 +397,18 @@
   <div class="container container--wide">
     <div class="visit__inner">
       <div data-reveal>
-        <p class="eyebrow">Travel with us</p>
-        <h2>Experience Libya <span class="ital">in person</span>.</h2>
-        <p>Small-group and private journeys, led by archaeologists and Libyan hosts. We handle the visa, the permits and the security so you can give your attention to the ruins.</p>
+        <p class="eyebrow" data-ar="سافر معنا">Travel with us</p>
+        <h2 data-ar='عِش ليبيا <span class="ital">على الطبيعة</span>.'>Experience Libya <span class="ital">in person</span>.</h2>
+        <p data-ar="رحلاتٌ خاصة وبمجموعاتٍ صغيرة، يقودها علماء آثار ومضيفون ليبيون. نتكفّل بالتأشيرة والتصاريح والأمن، لتنصرف بكامل انتباهك إلى الآثار.">Small-group and private journeys, led by archaeologists and Libyan hosts. We handle the visa, the permits and the security so you can give your attention to the ruins.</p>
         <div class="btn-row visit__actions">
-          <a class="btn btn--on-dark" href="#visit">Plan your journey <span class="arrow">→</span></a>
-          <a class="btn btn--outline-dark" href="#visit">Visa &amp; practicalities</a>
+          <a class="btn btn--on-dark" href="#visit" data-ar='خطّط رحلتك <span class="arrow">→</span>'>Plan your journey <span class="arrow">→</span></a>
+          <a class="btn btn--outline-dark" href="#visit" data-ar="التأشيرة والترتيبات">Visa &amp; practicalities</a>
         </div>
       </div>
       <ul class="visit__list" data-reveal data-reveal-delay="1">
-        <li><span class="n">i.</span><div class="visit__trip"><b>Cyrenaica &amp; the Greek Cities</b><span>8 days · Cyrene, Apollonia &amp; the eastern coast · from £3,450</span></div></li>
-        <li><span class="n">ii.</span><div class="visit__trip"><b>Tripolitania: Leptis, Sabratha &amp; Tripoli</b><span>7 days · the three Roman cities · from £2,980</span></div></li>
-        <li><span class="n">iii.</span><div class="visit__trip"><b>Sahara &amp; the Garamantes</b><span>10 days · Fezzan, Acacus rock art &amp; oasis towns · from £4,200</span></div></li>
+        <li><span class="n">i.</span><div class="visit__trip"><b data-ar="برقة والمدن الإغريقية">Cyrenaica &amp; the Greek Cities</b><span data-ar="8 أيام · قورينا وأبولونيا والساحل الشرقي · ابتداءً من £3,450">8 days · Cyrene, Apollonia &amp; the eastern coast · from £3,450</span></div></li>
+        <li><span class="n">ii.</span><div class="visit__trip"><b data-ar="طرابلس: لبدة وصبراتة وطرابلس">Tripolitania: Leptis, Sabratha &amp; Tripoli</b><span data-ar="7 أيام · المدن الرومانية الثلاث · ابتداءً من £2,980">7 days · the three Roman cities · from £2,980</span></div></li>
+        <li><span class="n">iii.</span><div class="visit__trip"><b data-ar="الصحراء والجرامنت">Sahara &amp; the Garamantes</b><span data-ar="10 أيام · فزّان ونقوش أكاكوس ومدن الواحات · ابتداءً من £4,200">10 days · Fezzan, Acacus rock art &amp; oasis towns · from £4,200</span></div></li>
       </ul>
     </div>
   </div>
@@ -406,34 +419,34 @@
   <div class="container container--wide">
     <div class="sec-head sec-head--split" data-reveal>
       <div>
-        <p class="eyebrow">From the journal</p>
-        <h2>Field notes &amp; <span class="ital">deeper reading</span>.</h2>
+        <p class="eyebrow" data-ar="من المدوّنة">From the journal</p>
+        <h2 data-ar='ملاحظاتٌ ميدانية و<span class="ital">قراءاتٌ أعمق</span>.'>Field notes &amp; <span class="ital">deeper reading</span>.</h2>
       </div>
       <div class="sec-head__aside" style="display:flex;align-items:flex-end;justify-content:flex-end">
-        <a class="link-arrow link-arrow--accent" href="#journal">All articles <span class="arrow">→</span></a>
+        <a class="link-arrow link-arrow--accent" href="#journal" data-ar='كل المقالات <span class="arrow">→</span>'>All articles <span class="arrow">→</span></a>
       </div>
     </div>
     <div class="journal-grid" style="margin-top:3rem">
       <a class="article-card" href="#journal" data-reveal>
-        <div class="article-card__media"><img src="assets/images/journal/explore.jpg" alt="A Greek temple at Cyrene"><span class="article-card__tag">Field notes</span></div>
-        <h3>Walking Leptis Magna at dawn</h3>
-        <p class="article-card__meta">8 min read · Sites</p>
-        <p>Before the heat and the light goes flat, the marble of the Severan forum turns the colour of honey. Here is what to see first.</p>
-        <span class="link-arrow link-arrow--accent">Read article <span class="arrow">→</span></span>
+        <div class="article-card__media"><img src="assets/images/journal/explore.jpg" alt="A Greek temple at Cyrene"><span class="article-card__tag" data-ar="ملاحظات ميدانية">Field notes</span></div>
+        <h3 data-ar="في لبدة الكبرى عند الفجر">Walking Leptis Magna at dawn</h3>
+        <p class="article-card__meta" data-ar="قراءة 8 دقائق · مواقع">8 min read · Sites</p>
+        <p data-ar="قبل أن يشتدّ الحرّ ويبهت الضوء، يكتسي رخام ساحة سيفيروس لون العسل. إليك ما تراه أولاً.">Before the heat and the light goes flat, the marble of the Severan forum turns the colour of honey. Here is what to see first.</p>
+        <span class="link-arrow link-arrow--accent" data-ar='اقرأ المقال <span class="arrow">→</span>'>Read article <span class="arrow">→</span></span>
       </a>
       <a class="article-card" href="#journal" data-reveal data-reveal-delay="1">
-        <div class="article-card__media"><img src="assets/images/journal/culture.jpg" alt="An ancient monument facade"><span class="article-card__tag">History</span></div>
-        <h3>The Garamantes: engineers of the Sahara</h3>
-        <p class="article-card__meta">11 min read · Eras</p>
-        <p>How a desert people moved water through hundreds of kilometres of hand-dug tunnels — and built cities where none should stand.</p>
-        <span class="link-arrow link-arrow--accent">Read article <span class="arrow">→</span></span>
+        <div class="article-card__media"><img src="assets/images/journal/culture.jpg" alt="An ancient monument facade"><span class="article-card__tag" data-ar="تاريخ">History</span></div>
+        <h3 data-ar="الجرامنت: مهندسو الصحراء">The Garamantes: engineers of the Sahara</h3>
+        <p class="article-card__meta" data-ar="قراءة 11 دقيقة · عصور">11 min read · Eras</p>
+        <p data-ar="كيف نقل شعبٌ صحراوي الماء عبر مئات الكيلومترات من الأنفاق المحفورة باليد — وبنى مدناً حيث لا ينبغي لها أن تقوم.">How a desert people moved water through hundreds of kilometres of hand-dug tunnels — and built cities where none should stand.</p>
+        <span class="link-arrow link-arrow--accent" data-ar='اقرأ المقال <span class="arrow">→</span>'>Read article <span class="arrow">→</span></span>
       </a>
       <a class="article-card" href="#journal" data-reveal data-reveal-delay="2">
-        <div class="article-card__media"><img src="assets/images/gallery/g3.jpg" alt="Colonnaded street at Leptis Magna"><span class="article-card__tag">Travel</span></div>
-        <h3>Getting into Libya in 2026: a practical guide</h3>
-        <p class="article-card__meta">9 min read · Visit</p>
-        <p>Visas, entry points, what is open and what is not. An honest, current account of travelling to Libya as a visitor.</p>
-        <span class="link-arrow link-arrow--accent">Read article <span class="arrow">→</span></span>
+        <div class="article-card__media"><img src="assets/images/gallery/g3.jpg" alt="Colonnaded street at Leptis Magna"><span class="article-card__tag" data-ar="سفر">Travel</span></div>
+        <h3 data-ar="الدخول إلى ليبيا في 2026: دليلٌ عملي">Getting into Libya in 2026: a practical guide</h3>
+        <p class="article-card__meta" data-ar="قراءة 9 دقائق · زيارة">9 min read · Visit</p>
+        <p data-ar="التأشيرات ومنافذ الدخول، وما هو مفتوحٌ وما هو مغلق. سردٌ صادقٌ ومحدَّث عن السفر إلى ليبيا زائراً.">Visas, entry points, what is open and what is not. An honest, current account of travelling to Libya as a visitor.</p>
+        <span class="link-arrow link-arrow--accent" data-ar='اقرأ المقال <span class="arrow">→</span>'>Read article <span class="arrow">→</span></span>
       </a>
     </div>
   </div>
@@ -444,21 +457,21 @@
   <div class="container container--wide">
     <div class="newsletter__inner">
       <div data-reveal>
-        <p class="eyebrow">Stay close to Libya</p>
-        <h2>New eras, sites and <span class="ital">open dates</span>.</h2>
+        <p class="eyebrow" data-ar="ابقَ قريباً من ليبيا">Stay close to Libya</p>
+        <h2 data-ar='عصورٌ ومواقع جديدة و<span class="ital">مواعيد متاحة</span>.'>New eras, sites and <span class="ital">open dates</span>.</h2>
       </div>
       <div data-reveal data-reveal-delay="1">
-        <p>A slow, occasional letter — newly published history, photo essays, and the few dates each season when travel is possible.</p>
+        <p data-ar="رسالةٌ متأنّية بين الحين والآخر — تاريخٌ يُنشر حديثاً، ومقالاتٌ مصوّرة، والمواعيد القليلة المتاحة للسفر كل موسم.">A slow, occasional letter — newly published history, photo essays, and the few dates each season when travel is possible.</p>
         <form class="newsletter__form" data-form style="margin-top:1.6rem" novalidate>
           <label class="field">
-            <span class="sr-only" style="position:absolute;left:-9999px">Email address</span>
+            <span class="sr-only" style="position:absolute;left:-9999px" data-ar="البريد الإلكتروني">Email address</span>
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--on-dark-soft)" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required data-ar-placeholder="بريدك@مثال.com">
           </label>
-          <button class="btn" type="submit">Subscribe <span class="arrow">→</span></button>
+          <button class="btn" type="submit" data-ar='اشترك <span class="arrow">→</span>'>Subscribe <span class="arrow">→</span></button>
         </form>
         <p class="form-msg" role="status" aria-live="polite"></p>
-        <p class="newsletter__note">No more than once a month. Unsubscribe anytime.</p>
+        <p class="newsletter__note" data-ar="مرّةً واحدة شهرياً على الأكثر. يمكنك إلغاء الاشتراك في أي وقت.">No more than once a month. Unsubscribe anytime.</p>
       </div>
     </div>
   </div>
@@ -473,47 +486,47 @@
       <div>
         <a class="nav__brand" href="#top" style="color:var(--on-dark)">
           <span class="brand-mark" style="border-color:var(--brass);color:var(--brass)"><span>H</span></span>
-          <span class="brand-word"><b>HistoricLibya</b><small style="color:var(--brass)">Heritage &amp; Travel</small></span>
+          <span class="brand-word"><b>HistoricLibya</b><small style="color:var(--brass)" data-ar="التراث والسفر">Heritage &amp; Travel</small></span>
         </a>
-        <p class="footer__blurb">A history library and specialist heritage-travel company for Libya — the Greek, Roman and Saharan past, and the journeys that bring you to it.</p>
+        <p class="footer__blurb" data-ar="مكتبةٌ تاريخية وشركة سفرٍ تراثي متخصّصة لليبيا — الماضي الإغريقي والروماني والصحراوي، والرحلات التي تأتي بك إليه.">A history library and specialist heritage-travel company for Libya — the Greek, Roman and Saharan past, and the journeys that bring you to it.</p>
         <div class="footer__social">
-          <a href="https://www.instagram.com/historiclibya/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 8.5h2.5M14 8.5C14 6.6 14.8 6 16.5 6H17M14 8.5V12m0 0v6m0-6h-2.5M14 12h2.5"/></svg></a>
-          <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+          <a href="https://www.instagram.com/historiclibya/" aria-label="Instagram" data-ar-aria-label="إنستغرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook" data-ar-aria-label="فيسبوك"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 8.5h2.5M14 8.5C14 6.6 14.8 6 16.5 6H17M14 8.5V12m0 0v6m0-6h-2.5M14 12h2.5"/></svg></a>
+          <a href="#" aria-label="Email" data-ar-aria-label="البريد الإلكتروني"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
         </div>
       </div>
       <div class="footer__col">
-        <h4>Explore</h4>
+        <h4 data-ar="استكشف">Explore</h4>
         <ul>
-          <li><a href="#eras">Historical eras</a></li>
-          <li><a href="#sites">Sites &amp; cities</a></li>
-          <li><a href="#figures">Key figures</a></li>
-          <li><a href="#journal">Cultural history</a></li>
-          <li><a href="#journal">Library &amp; references</a></li>
+          <li><a href="#eras" data-ar="العصور التاريخية">Historical eras</a></li>
+          <li><a href="#sites" data-ar="المواقع والمدن">Sites &amp; cities</a></li>
+          <li><a href="#figures" data-ar="الشخصيات البارزة">Key figures</a></li>
+          <li><a href="#journal" data-ar="التاريخ الثقافي">Cultural history</a></li>
+          <li><a href="#journal" data-ar="المكتبة والمراجع">Library &amp; references</a></li>
         </ul>
       </div>
       <div class="footer__col">
-        <h4>Travel</h4>
+        <h4 data-ar="السفر">Travel</h4>
         <ul>
-          <li><a href="#visit">Sample itineraries</a></li>
-          <li><a href="#visit">Visa &amp; entry</a></li>
-          <li><a href="#visit">Practicalities &amp; safety</a></li>
-          <li><a href="#visit">Why travel with us</a></li>
-          <li><a href="#intro">About</a></li>
+          <li><a href="#visit" data-ar="برامج مقترحة">Sample itineraries</a></li>
+          <li><a href="#visit" data-ar="التأشيرة والدخول">Visa &amp; entry</a></li>
+          <li><a href="#visit" data-ar="الترتيبات والسلامة">Practicalities &amp; safety</a></li>
+          <li><a href="#visit" data-ar="لماذا تسافر معنا">Why travel with us</a></li>
+          <li><a href="#intro" data-ar="من نحن">About</a></li>
         </ul>
       </div>
       <div class="footer__col">
-        <h4>Contact</h4>
+        <h4 data-ar="تواصل">Contact</h4>
         <ul>
           <li><a href="mailto:historiclibya@gmail.com">historiclibya@gmail.com</a></li>
-          <li><a href="#visit">Plan a journey</a></li>
-          <li><a href="#visit">Enquire on WhatsApp</a></li>
+          <li><a href="#visit" data-ar="خطّط رحلة">Plan a journey</a></li>
+          <li><a href="#visit" data-ar="استفسر عبر واتساب">Enquire on WhatsApp</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 HistoricLibya. All rights reserved.</span>
-      <span>Tripoli · Cyrene · The Fezzan</span>
+      <span data-ar="© 2026 HistoricLibya. جميع الحقوق محفوظة.">© 2026 HistoricLibya. All rights reserved.</span>
+      <span data-ar="طرابلس · قورينا · فزّان">Tripoli · Cyrene · The Fezzan</span>
     </div>
   </div>
 </footer>
